@@ -70,7 +70,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Specify Node.js version (just for building React)
+          node-version: '20'  # Specify Node.js version (just for building React)
 
       - name: Install dependencies
         run: npm install  # Install dependencies for the React app
