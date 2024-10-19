@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { YOUTUBE_API_KEY } from "../utils/constants";
 import { YOUTUBE_VIDEOS_API } from "../utils/constants";
 import CommentsContainer from "./CommentsContainer";
+import LiveChat from "./LiveChat";
 
 const Watch = () => {
   const dispatch = useDispatch();
@@ -129,6 +130,7 @@ const Watch = () => {
           {/* {videos.map((video) => (
             <SuggestionVideo key={video.id} info={video} />
           ))} */}
+          <LiveChat />
         </div>
       </div>
     </>
