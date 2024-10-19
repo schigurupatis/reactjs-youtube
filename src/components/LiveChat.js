@@ -2,7 +2,7 @@ import React from 'react'
 
 const LiveChat = () => {
   return (
-    <div>LiveChat</div>
+    <div>LiveChat will comes here soon</div>
   )
 }
 
