@@ -1,3 +1,58 @@
+# name: Firebase Hosting Deploy
+
+# on:
+#   push:
+#     branches:
+#       - main  # Triggers deployment on push to the main branch
+
+# jobs:
+#   build:
+#     name: Build
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout Repo
+#         uses: actions/checkout@v2.3.2
+        
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: '16'  # Set Node.js version
+
+#       - name: Install dependencies
+#         run: npm install
+#       - name: Build
+#         env:
+#           CI: true
+#         run: npm run build  # Run your React app build
+#       - name: Archive Production Artifact
+#         uses: actions/upload-artifact@v2
+#         with: 
+#           name: build
+#           path: build
+
+#   depoly:
+#       name: Deploy to Firebase Hosting
+#       needs: build 
+#       runs-on: ubuntu-latest
+#       setps: 
+#           - name: Checkout Repo
+#             uses: actions/checkout@v2.3.2
+#           - name: Download Artifact
+#             uses: actions/download-artifact@v2
+#             with: 
+#               name: build
+#               path: build
+#           - name: Deploy to Firebase
+#             uses: w9jds/firebase-action@v1
+#             with:
+#               args: deploy --only hosting
+#               env:
+#                 FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+
+
+
 name: Firebase Hosting Deploy
 
 on:
@@ -6,14 +61,13 @@ on:
       - main  # Triggers deployment on push to the main branch
 
 jobs:
-  build:
-    name: Build
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2.3.2
-        
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -21,31 +75,14 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-      - name: Build
-        env:
-          CI: true
-        run: npm run build  # Run your React app build
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@v2
-        with: 
-          name: build
-          path: build
 
-  depoly:
-      name: Deploy to Firebase Hosting
-      needs: build 
-      runs-on: ubuntu-latest
-      setps: 
-          - name: Checkout Repo
-            uses: actions/checkout@v2.3.2
-          - name: Download Artifact
-            uses: actions/download-artifact@v2
-            with: 
-              name: build
-              path: build
-          - name: Deploy to Firebase
-            uses: w9jds/firebase-action@v1
-            with:
-              args: deploy --only hosting
-              env:
-                FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Run Build
+        run: npm run build  # Run your React app build
+
+      - name: Deploy to Firebase Hosting
+        uses: w9jds/firebase-action@v1
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
