@@ -68,7 +68,7 @@ export const AddVideo = ({ info }) => {
     <div className="border border-gray-300">
       <Video info={info} />
       <h3 className="text-gray-500 text-sm text-center">
-        Sponsored - Add Video - testingksdfjksd
+        Sponsored - Add Video - Firebase CI/CD Github Actions
       </h3>
     </div>
   );
