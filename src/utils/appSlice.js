@@ -12,8 +12,11 @@ const appSlice = createSlice({
     setMenuClose: (state) => {
       state.isMenuOpen = false;
     },
+    setMenuOpenDefault: (state) => {
+      state.isMenuOpen = true;
+    },
   },
 });
 
-export const { setMenuOpen, setMenuClose } = appSlice.actions;
+export const { setMenuOpen, setMenuClose, setMenuOpenDefault } = appSlice.actions;
 export default appSlice.reducer;

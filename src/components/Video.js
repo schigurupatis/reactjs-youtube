@@ -1,7 +1,7 @@
 import React from "react";
 
 const Video = ({ info }) => {
-  console.log(info);
+  //console.log(info);
 
   //console.log(info.id);
 
@@ -13,6 +13,7 @@ const Video = ({ info }) => {
   const modifedchannelTitle =
   channelTitle.length > 26 ? channelTitle.slice(0, 26) + "..." : channelTitle;
   
+  //Function for Views Format
   const formatViewsCount = (count) => {
     if (count < 1000) {
       return count;
@@ -26,6 +27,7 @@ const Video = ({ info }) => {
     return count;
   };
 
+  //Function for Published Time Format
   const getRelativeTime = (publishedAt) => {
     const now = new Date();
     const publishedDate = new Date(publishedAt);
