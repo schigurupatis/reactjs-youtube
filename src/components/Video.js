@@ -11,13 +11,48 @@ const Video = ({ info }) => {
 
   const modifedTitle = title.length > 60 ? title.slice(0, 60) + "..." : title;
   const modifedchannelTitle =
-    channelTitle.length > 26 ? channelTitle.slice(0, 26) + "..." : channelTitle;
-  // const modifiedviewCount = viewCount
-  //   .toString()
-  //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  channelTitle.length > 26 ? channelTitle.slice(0, 26) + "..." : channelTitle;
+  
+  const formatViewsCount = (count) => {
+    if (count < 1000) {
+      return count;
+    } else if (count >= 1000 && count < 1_000_000) {
+      return (count / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    } else if (count >= 1_000_000 && count < 1_000_000_000) {
+      return (count / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+    } else if (count >= 1_000_000_000) {
+      return (count / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + 'B';
+    }
+    return count;
+  };
 
-  const viewCountThousands = viewCount / 1000;
-  const modifiepublishedAt = publishedAt.slice(0, 10);
+  const getRelativeTime = (publishedAt) => {
+    const now = new Date();
+    const publishedDate = new Date(publishedAt);
+    const diffInSeconds = Math.floor((now - publishedDate) / 1000);
+  
+    if (diffInSeconds < 60) {
+      return `${diffInSeconds} seconds ago`;
+    } else if (diffInSeconds < 3600) {
+      const minutes = Math.floor(diffInSeconds / 60);
+      return `${minutes} min ago`;
+    } else if (diffInSeconds < 86400) {
+      const hours = Math.floor(diffInSeconds / 3600);
+      return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    } else if (diffInSeconds < 604800) {
+      const days = Math.floor(diffInSeconds / 86400);
+      return `${days} day${days > 1 ? 's' : ''} ago`;
+    } else if (diffInSeconds < 2592000) {
+      const weeks = Math.floor(diffInSeconds / 604800);
+      return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
+    } else if (diffInSeconds < 31536000) {
+      const months = Math.floor(diffInSeconds / 2592000);
+      return `${months} month${months > 1 ? 's' : ''} ago`;
+    } else {
+      const years = Math.floor(diffInSeconds / 31536000);
+      return `${years} year${years > 1 ? 's' : ''} ago`;
+    }
+  };
 
   return (
     <div className="my-5 w-[373px]">
@@ -39,9 +74,11 @@ const Video = ({ info }) => {
           <h5 className="text-gray-500">{modifedchannelTitle}</h5>
           <h6 className="text-gray-500">
             <span className="mr-4 text-sm">
-              {viewCountThousands + "K"} Views
+              {formatViewsCount(viewCount)} Views
             </span>
-            <span className="mr-4 text-sm">{modifiepublishedAt}</span>
+            <span className="mr-4 text-sm">
+              {getRelativeTime(publishedAt)} 
+            </span>
           </h6>
         </div>
         <div className="w-1/12">
