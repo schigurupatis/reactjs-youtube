@@ -20,11 +20,11 @@ const Video = ({ info }) => {
   const modifiepublishedAt = publishedAt.slice(0, 10);
 
   return (
-    <div className="my-5 w-[343px]">
+    <div className="my-5 w-[373px]">
       <img
         src={thumbnails.standard.url}
         alt={title}
-        className="w-[343px] h-[193px] rounded-xl object-cover"
+        className="w-[373px] h-[209px] rounded-xl object-cover"
       />
       <div className="flex justify-between items-top gap-1 w-full mt-3">
         <div className="w-2/12">

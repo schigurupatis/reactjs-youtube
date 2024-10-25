@@ -15,7 +15,7 @@ const SideBar = () => {
   if (!isMenuOpen) return null;
 
   return (
-    <div className="">
+    <div className="w-1/5">
       <Link to="/">
         <div className="flex items-center gap-3 justify-start cursor-pointer hover:bg-gray-100 px-3 py-2 rounded-lg">
           <FontAwesomeIcon icon={faHome} className="min-w-5" />

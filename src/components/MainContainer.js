@@ -4,7 +4,7 @@ import Buttons from "./Buttons";
 
 const MainContainer = () => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-screen">
       <Buttons />
       <VideoContainer />
     </div>
