@@ -11,3 +11,7 @@
 body {
   font-family: "Roboto-Regular";
 }
+
+.text-xs {
+  font-size: 0.8rem;
+}
